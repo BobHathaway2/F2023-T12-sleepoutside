@@ -9,8 +9,8 @@ function addProductToCart(product) {
   if (cartContent) {
     productArray = cartContent;
   }
-    productArray.push(product);
-    setLocalStorage("so-cart", productArray);
+  productArray.push(product);
+  setLocalStorage("so-cart", productArray);
 }
 // add to cart button event handler
 async function addToCartHandler(e) {
