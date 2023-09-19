@@ -8,7 +8,7 @@ const product = new productDetails(productId, dataSource);
 product.init();
 
 // let productArray = [];
-// const dataSource = new ProductData("tents");
+// // const dataSource = new ProductData("tents");
 
 // function addProductToCart(product) {
 //   let cartContent = getLocalStorage("so-cart");

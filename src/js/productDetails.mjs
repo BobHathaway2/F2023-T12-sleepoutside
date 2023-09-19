@@ -25,31 +25,33 @@ export default class ProductDetails {
     this.product = {};
     this.dataSource = dataSource;
   }
+
   async init() {
-
     this.product = await this.dataSource.findProductById(this.productId);
-
     this.renderProductDetails("main");
 
+    // Add a click event listener to the "Add to Cart" button
     document
-    .getElementById("addToCart")
-    .addEventListener("click", this.addProduct.bind(this));
-}
-
-  productArray = [];
-
-  addProduct(product){
-    let cartContent = getLocalStorage("so-cart");
-      if (cartContent) {
-        productArray = cartContent;
-      }
-      productArray.push(product);
-      setLocalStorage("so-cart", productArray);
+      .getElementById("addToCart")
+      .addEventListener("click", () => this.addToCart());
   }
 
+  addToCart() {
+    this.addProduct(this.product);
+  }
 
-  addToCart(product) {
-    addProduct(this.product);
+  addProduct(product) {
+    // Initialize the productArray if it's not already defined
+    if (!this.productArray) {
+      this.productArray = [];
+    }
+
+    let cartContent = getLocalStorage("so-cart");
+    if (cartContent) {
+      this.productArray = cartContent;
+    }
+    this.productArray.push(product);
+    setLocalStorage("so-cart", this.productArray);
   }
 
   renderProductDetails(selector) {
