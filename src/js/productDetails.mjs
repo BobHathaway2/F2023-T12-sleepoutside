@@ -30,10 +30,9 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails("main");
 
-    // Add a click event listener to the "Add to Cart" button
     document
       .getElementById("addToCart")
-      .addEventListener("click", () => this.addToCart());
+      .addEventListener("click",this.addToCart.bind(this));
   }
 
   addToCart() {
@@ -41,11 +40,9 @@ export default class ProductDetails {
   }
 
   addProduct(product) {
-    // Initialize the productArray if it's not already defined
     if (!this.productArray) {
       this.productArray = [];
     }
-
     let cartContent = getLocalStorage("so-cart");
     if (cartContent) {
       this.productArray = cartContent;
