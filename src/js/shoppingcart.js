@@ -8,13 +8,11 @@ function checkCart(){
     const products = JSON.parse(cart);
 
     if(cart !== null){
-        const totalPrice = products.reduce((accumulator, products) => {
-            return accumulator + products.FinalPrice;
-          }, 0);
+        const totalPrice = products.reduce((accumulator, products) => accumulator + products.FinalPrice, 0);
         total.textContent = `Total: $ ${totalPrice}`;
     }else{
-        cartFooter.style.display = 'none';
+        cartFooter.style.display = "none";
     }
 }
 
-window.addEventListener('load', checkCart);
+window.addEventListener("load", checkCart);
