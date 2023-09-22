@@ -4,10 +4,11 @@ const tentPrice = document.querySelectorAll("cart-card__price")
 
 
 function checkCart(){
-    const cart = localStorage.getItem("so-cart");
-    const products = JSON.parse(cart);
-
-    if(cart !== null){
+    let cart = [];
+    let currentCartContent = localStorage.getItem("so-cart");
+    if (currentCartContent) {
+        cart = currentCartContent;
+        const products = JSON.parse(cart);
         const totalPrice = products.reduce((accumulator, products) => {
             return accumulator + products.FinalPrice;
           }, 0);
