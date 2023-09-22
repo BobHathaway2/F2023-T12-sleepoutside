@@ -1,8 +1,8 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { resolve } from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: 'src/',
+  root: "src/",
 
   build: {
     outDir: "../dist",
@@ -10,9 +10,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"),
         cart: resolve(__dirname, "src/cart/index.html"),
-        product: resolve(__dirname, "src/product_pages/index.html"
-        ),
-  
+        product: resolve(__dirname, "src/product_pages/index.html"),
       },
     },
   },
