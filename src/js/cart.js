@@ -1,9 +1,14 @@
 import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  let cartItems = [];
+  let currentCartContent = localStorage.getItem("so-cart");
+  if (currentCartContent) {
+    cartItems = getLocalStorage("so-cart");
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  }
   attachRemoveListeners();
 }
 
