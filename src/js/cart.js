@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
-
+import {checkCart} from "./shoppingcart.js";
+import { check } from "prettier";
 function renderCartContents() {
 
   let cartItems = [];
@@ -58,6 +59,7 @@ function removeItemFromCart(productId) {
 
   // Re-render cart contents
   renderCartContents();
+  checkCart();
 }
 
 // Listener for x to remove item from cart

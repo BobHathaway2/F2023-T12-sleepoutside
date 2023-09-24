@@ -2,8 +2,7 @@ const total = document.querySelector(".cart-total");
 const cartFooter = document.querySelector(".cart-footer");
 const tentPrice = document.querySelectorAll("cart-card__price")
 
-
-function checkCart(){
+export function checkCart(){
     let cart = [];
     let currentCartContent = localStorage.getItem("so-cart");
     if (currentCartContent) {
@@ -13,10 +12,11 @@ function checkCart(){
             //return accumulator + products.FinalPrice;
             return accumulator + (products.ListPrice - (products.Discount ?? 0));
           }, 0);
+
         total.textContent = `Total: $ ${totalPrice}`;
     }else{
-        cartFooter.style.display = 'none';
+        cartFooter.style.display = "none";
     }
 }
 
-window.addEventListener('load', checkCart);
+window.addEventListener("load", checkCart);
