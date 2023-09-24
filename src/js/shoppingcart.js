@@ -3,7 +3,7 @@ const cartFooter = document.querySelector(".cart-footer");
 const tentPrice = document.querySelectorAll("cart-card__price")
 
 
-function checkCart(){
+export function checkCart(){
     let cart = [];
     let currentCartContent = localStorage.getItem("so-cart");
     if (currentCartContent) {
