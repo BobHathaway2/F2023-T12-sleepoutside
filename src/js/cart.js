@@ -1,9 +1,15 @@
 import { getLocalStorage } from "./utils.mjs";
-
+import {checkCart} from "./shoppingcart.js";
+import { check } from "prettier";
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  let cartItems = [];
+  let currentCartContent = localStorage.getItem("so-cart");
+  if (currentCartContent) {
+    cartItems = getLocalStorage("so-cart");
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  }
   attachRemoveListeners();
 }
 
@@ -51,6 +57,7 @@ function removeItemFromCart(productId) {
 
   // Re-render cart contents
   renderCartContents();
+  checkCart();
 }
 
 // Listener for x to remove item from cart
