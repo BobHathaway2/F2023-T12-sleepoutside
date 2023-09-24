@@ -1,3 +1,4 @@
+
 import { renderListWithTemplate } from "./utils.mjs";
 
 export default class ProductListing {
@@ -35,3 +36,4 @@ function productCardTemplate(product) {
     </a>
   </li>`;
 }
+

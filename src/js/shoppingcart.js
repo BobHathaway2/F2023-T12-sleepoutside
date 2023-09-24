@@ -9,7 +9,8 @@ export function checkCart(){
         cart = currentCartContent;
         const products = JSON.parse(cart);
         const totalPrice = products.reduce((accumulator, products) => {
-            return accumulator + products.FinalPrice;
+            //return accumulator + products.FinalPrice;
+            return accumulator + (products.ListPrice - (products.Discount ?? 0));
           }, 0);
 
         total.textContent = `Total: $ ${totalPrice}`;
