@@ -1,4 +1,4 @@
-import{g as s,s as d,a as e}from"./utils-14f1728a.js";function c(t){if(t.ok)return t.json();throw new Error("Bad Response")}class i{constructor(r){this.category=r,this.path=`../json/${this.category}.json`}getData(){return fetch(this.path).then(c).then(r=>r)}async findProductById(r){return(await this.getData()).find(o=>o.Id===r)}}function n(t){return`<section class="product-detail"> <h3>${t.Brand.Name}</h3>
+import{g as s,s as d,a as e}from"./utils-14f1728a.js";/* empty css              */function c(t){if(t.ok)return t.json();throw new Error("Bad Response")}class i{constructor(r){this.category=r,this.path=`../json/${this.category}.json`}getData(){return fetch(this.path).then(c).then(r=>r)}async findProductById(r){return(await this.getData()).find(o=>o.Id===r)}}function n(t){return`<section class="product-detail"> <h3>${t.Brand.Name}</h3>
     <h2 class="divider">${t.NameWithoutBrand}</h2>
     <img
       class="divider"
