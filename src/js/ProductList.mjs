@@ -6,6 +6,7 @@ function productCardTemplate(product){
       <img
         src="${product.Image}"
         alt=" Image of ${product.Name}"
+        class="card-image"
       />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.Name}</h2>

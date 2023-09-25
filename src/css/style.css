@@ -158,13 +158,13 @@ button {
 
 .product-detail {
   padding: 1em;
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: auto;
 }
 
 .product-detail img {
-  width: 100%;
-}
+  width: 70%;
+} 
 
 /* Start cart list card styles */
 .cart-card {
@@ -214,9 +214,20 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
+  /* .card-image{
+    width: 50%;
+  } */
+
+  .product-detail img {
+    width: 50%;
+  }
 }
 
+.card-image{
+    width: 100%;
+  }
 footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+

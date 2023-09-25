@@ -4,8 +4,12 @@ import productDetails from "./productDetails.mjs";
 
 const dataSource = new ProductData("tents");
 const productId = getParams("product");
+
+
 const product = new productDetails(productId, dataSource);
 product.init();
+
+
 
 // let productArray = [];
 // // const dataSource = new ProductData("tents");
