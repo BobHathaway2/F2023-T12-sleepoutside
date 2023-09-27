@@ -60,7 +60,6 @@ function removeItemFromCart(productId) {
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
   totalAmount();
 
-
   // Re-render cart contents
   renderCartContents();
   checkCart();
