@@ -1,5 +1,4 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-import totalAmount from "./main";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -41,49 +40,16 @@ export default class ProductDetails {
     this.addProduct(this.product);
   }
 
-  addProduct(product) { 
-
-    // let quantity = 0;   
-    // if (!this.productArray) {
-    //   this.productArray = [];
-    // }
-    // if (!this.productArray) {
-    //   this.productArray = [];
-    // }
-    // let cartContent = getLocalStorage("so-cart");
-    // if (cartContent) {
-    //   this.productArray = cartContent;
-    // }
-    // this.productArray.push(product);
-    // setLocalStorage("so-cart", this.productArray);
-
-    this.productArray = getLocalStorage("so-cart") || [];
-    let search = this.productArray.find((item) => item.Id === product.Id);
-    console.log(product.Id);
-
-    if (search === undefined) {
-      this.productArray.push({
-        Id: product.Id,
-        Name: product.Name,
-        ColorName: product.ColorName,
-        Brand: product.Brand,
-        Colors: product.Colors,
-        Discount: product.Discount,
-        Image: product.Image,
-        ListPrice: product.ListPrice,
-        DescriptionHtmlSimple: product.DescriptionHtmlSimple,
-        quantity: 1
-
-      })
+  addProduct(product) {
+    if (!this.productArray) {
+      this.productArray = [];
     }
-    else{
-      search.quantity += 1
-
+    let cartContent = getLocalStorage("so-cart");
+    if (cartContent) {
+      this.productArray = cartContent;
     }
-    setLocalStorage("so-cart", this.productArray);  
-    totalAmount()
-
-    
+    this.productArray.push(product);
+    setLocalStorage("so-cart", this.productArray);
   }
 
   renderProductDetails(selector) {
@@ -94,7 +60,3 @@ export default class ProductDetails {
     );
   }
 }
-
-
-
-    
