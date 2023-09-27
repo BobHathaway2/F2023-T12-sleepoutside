@@ -1,6 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 import {checkCart} from "./shoppingcart.js";
 import { check } from "prettier";
+import totalAmount from "./main.js";
 function renderCartContents() {
 
   let cartItems = [];
@@ -56,6 +57,9 @@ function removeItemFromCart(productId) {
 
   // Update the cart in local storage with the modified items
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
+  EG--superscript
+  totalAmount();
+   main
 
   // Re-render cart contents
   renderCartContents();
