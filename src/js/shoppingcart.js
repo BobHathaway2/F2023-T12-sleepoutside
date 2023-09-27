@@ -1,7 +1,6 @@
 const total = document.querySelector(".cart-total");
 const cartFooter = document.querySelector(".cart-footer");
 const tentPrice = document.querySelectorAll("cart-card__price")
-import totalAmount from "./main";
 
 export function checkCart(){
     let cart = [];
@@ -21,4 +20,3 @@ export function checkCart(){
 }
 
 window.addEventListener("load", checkCart);
-totalAmount()

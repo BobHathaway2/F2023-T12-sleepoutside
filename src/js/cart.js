@@ -1,8 +1,6 @@
 import { getLocalStorage } from "./utils.mjs";
 import {checkCart} from "./shoppingcart.js";
 import { check } from "prettier";
-import totalAmount from "./main.js";
-
 function renderCartContents() {
 
   let cartItems = [];
@@ -28,7 +26,7 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <span class="remove-item" data-id="${item.Id}">x</span>
-  <p id="quantityDisplay" class="cart-card__quantity">qty: ${item.quantity}</p>
+  <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__list">Price: $${item.ListPrice}</p>
   <p class="cart-card__discount">Discount: $${(item.Discount ?? 0)}</p>
   <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>
@@ -58,8 +56,6 @@ function removeItemFromCart(productId) {
 
   // Update the cart in local storage with the modified items
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
-  totalAmount();
-
 
   // Re-render cart contents
   renderCartContents();
