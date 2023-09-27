@@ -26,7 +26,7 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <span class="remove-item" data-id="${item.Id}">x</span>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty:${item.quantity} </p>
   <p class="cart-card__list">Price: $${item.ListPrice}</p>
   <p class="cart-card__discount">Discount: $${(item.Discount ?? 0)}</p>
   <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>
