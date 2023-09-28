@@ -22,20 +22,6 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
-  const htmlStrings = list.map(templateFn);
-  // if clear is true we need to clear out the contents of the parent.
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
-}
 
 
 export function getParams(param){
@@ -43,4 +29,39 @@ export function getParams(param){
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
   return product;
+}
+
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template.innerHTML);
+  if (callback) {
+    callback(data);
+  }
+  
+}
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+export async function loadHeaderFooter() {
+  const header = await loadTemplate("../partials/header.html")
+  const footer = await loadTemplate("../partials/footer.html");
+  const domHeader = document.getElementById("main-header");
+  const domFooter = document.getElementById("main-footer");
+  renderWithTemplate(header, domHeader);
+  renderWithTemplate(footer, domFooter);
+}
+
+export async function loadTemplate(path) {
+  const response = await fetch(path);
+  const html = await response.text()  
+
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
 }

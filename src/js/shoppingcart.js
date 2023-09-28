@@ -1,20 +1,22 @@
 const total = document.querySelector(".cart-total");
 const cartFooter = document.querySelector(".cart-footer");
-const tentPrice = document.querySelectorAll("cart-card__price")
+const tentPrice = document.querySelectorAll("cart-card__price");
 
-
-function checkCart(){
-    const cart = localStorage.getItem("so-cart");
-    const products = JSON.parse(cart);
-
-    if(cart !== null){
+export function checkCart(){
+    let cart = [];
+    let currentCartContent = localStorage.getItem("so-cart");
+    if (currentCartContent) {
+        cart = currentCartContent;
+        const products = JSON.parse(cart);
         const totalPrice = products.reduce((accumulator, products) => {
-            return accumulator + products.FinalPrice;
+            //return accumulator + products.FinalPrice;
+            return accumulator + (products.ListPrice - (products.Discount ?? 0));
           }, 0);
+
         total.textContent = `Total: $ ${totalPrice}`;
     }else{
-        cartFooter.style.display = 'none';
+        cartFooter.style.display = "none";
     }
 }
 
-window.addEventListener('load', checkCart);
+window.addEventListener("load", checkCart);

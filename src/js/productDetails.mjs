@@ -9,7 +9,8 @@ function productDetailsTemplate(product) {
       alt="${product.NameWithoutBrand}"
       class="product-img"
     />
-    <p class="product-card__price">$${product.FinalPrice}</p>
+    <p class="product-card__list">Original Price: $${product.ListPrice}</p>
+    <p class="product-card__discount">Discount: $${(product.Discount ?? 0)}</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
