@@ -33,7 +33,7 @@ export function getParams(param){
 
 
 export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
+  parentElement.insertAdjacentHTML("afterbegin", template.innerHTML);
   if (callback) {
     callback(data);
   }
@@ -58,7 +58,9 @@ export async function loadHeaderFooter() {
 }
 
 export async function loadTemplate(path) {
-  const html = await fetch(path);
+  const response = await fetch(path);
+  const html = await response.text()  
+
   const template = document.createElement('template');
   template.innerHTML = html;
   return template;
