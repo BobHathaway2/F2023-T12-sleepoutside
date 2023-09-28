@@ -1,6 +1,6 @@
 const total = document.querySelector(".cart-total");
 const cartFooter = document.querySelector(".cart-footer");
-const tentPrice = document.querySelectorAll("cart-card__price")
+const tentPrice = document.querySelectorAll("cart-card__price");
 
 export function checkCart(){
     let cart = [];
