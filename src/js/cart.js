@@ -1,5 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
-import {checkCart} from "./shoppingcart.js";
+import {checkCart} from "./shoppingcart.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
@@ -59,9 +59,7 @@ function removeItemFromCart(productId) {
 
   // Update the cart in local storage with the modified items
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
-  //EG--superscript
-  totalAmount();
-   main
+
 
   // Re-render cart contents
   renderCartContents();
