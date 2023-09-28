@@ -1,22 +1,57 @@
+import { getLocalStorage } from "./utils.mjs";
+
 const total = document.querySelector(".cart-total");
 const cartFooter = document.querySelector(".cart-footer");
-const tentPrice = document.querySelectorAll("cart-card__price");
 
-export function checkCart(){
-    let cart = [];
-    let currentCartContent = localStorage.getItem("so-cart");
-    if (currentCartContent) {
-        cart = currentCartContent;
-        const products = JSON.parse(cart);
-        const totalPrice = products.reduce((accumulator, products) => {
-            //return accumulator + products.FinalPrice;
-            return accumulator + (products.ListPrice - (products.Discount ?? 0));
-          }, 0);
+function checkCart(){
+  let cart = [];
+  let currentCartContent = localStorage.getItem("so-cart");
+  if (currentCartContent) {
+      cart = currentCartContent;
+      const products = JSON.parse(cart);
+      const totalPrice = products.reduce((accumulator, products) => {
+          //return accumulator + products.FinalPrice;
+          return accumulator + (products.ListPrice - (products.Discount ?? 0));
+        }, 0);
 
-        total.textContent = `Total: $ ${totalPrice}`;
-    }else{
-        cartFooter.style.display = "none";
-    }
+      total.textContent = `Total: $ ${totalPrice}`;
+  }else{
+      cartFooter.style.display = "none";
+  }
 }
 
-window.addEventListener("load", checkCart);
+
+function cartItemTemplate(item) {
+  const newItem = `<li class="cart-card divider">
+  <a href="#" class="cart-card__image">
+    <img
+      src="${item.Image}"
+      alt="${item.Name}"
+    />
+  </a>
+  <a href="#">
+    <h2 class="card__name">${item.Name}</h2>
+  </a>
+  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <span class="remove-item" data-id="${item.Id}">x</span>
+  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__list">Price: $${item.ListPrice}</p>
+  <p class="cart-card__discount">Discount: $${(item.Discount ?? 0)}</p>
+  <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>  
+</li>`;
+
+  return newItem;
+}
+
+export default class ShoppingCart {
+  constructor(key, parentSelector) {
+    this.key = key;
+    this.parentSelector = parentSelector;
+  }
+  renderCartContents() {
+    const cartItems = getLocalStorage(this.key);
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+    checkCart();
+  }
+}
