@@ -1,12 +1,8 @@
-import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";
+import { getParams } from "./utils.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const productData = new ProductData("tents");
 
-const productListElement = document.getElementById("product-list");
-const productListing = new ProductListing("tents", productData, productListElement);
-productListing.init();
+
 
