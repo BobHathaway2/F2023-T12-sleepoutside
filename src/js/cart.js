@@ -1,18 +1,12 @@
-import { getLocalStorage } from "./utils.mjs";
-import {checkCart} from "./shoppingcart.js";
-import { check } from "prettier";
-import totalAmount from "./main.js";
-function renderCartContents() {
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import ShoppingCart from "./shoppingcart.mjs";
 
-  let cartItems = [];
-  let currentCartContent = localStorage.getItem("so-cart");
-  if (currentCartContent) {
-    cartItems = getLocalStorage("so-cart");
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  }
-  attachRemoveListeners();
-}
+loadHeaderFooter();
+
+
+const cart = new ShoppingCart("so-cart", ".product-list")
+cart.renderCartContents();
+attachRemoveListeners();
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -27,7 +21,7 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <span class="remove-item" data-id="${item.Id}">x</span>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty:${item.quantity} </p>
   <p class="cart-card__list">Price: $${item.ListPrice}</p>
   <p class="cart-card__discount">Discount: $${(item.Discount ?? 0)}</p>
   <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>
@@ -39,7 +33,7 @@ function cartItemTemplate(item) {
 renderCartContents();
 
 
-// Function to remove an item from the cart based on quantity
+
 function removeItemFromCart(productId) {
   // Fetch from local storage
   const cartItems = getLocalStorage("so-cart");
@@ -57,13 +51,12 @@ function removeItemFromCart(productId) {
 
   // Update the cart in local storage with the modified items
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
-  EG--superscript
-  totalAmount();
-   main
+
 
   // Re-render cart contents
-  renderCartContents();
-  checkCart();
+  const cart = new ShoppingCart("so-cart", ".product-list")
+  cart.renderCartContents();
+  attachRemoveListeners();
 }
 
 // Listener for x to remove item from cart
