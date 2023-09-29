@@ -2,6 +2,7 @@ import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./shoppingcart.mjs";
 
 loadHeaderFooter();
+<<<<<<< HEAD
 
 
 const cart = new ShoppingCart("so-cart", ".product-list")
@@ -34,6 +35,14 @@ renderCartContents();
 
 
 
+=======
+
+const cart = new ShoppingCart("so-cart", ".product-list")
+cart.renderCartContents();
+attachRemoveListeners();
+
+
+>>>>>>> d2a9e0344648f7acbb36c1dd948132d33f2a3310
 function removeItemFromCart(productId) {
   // Fetch from local storage
   const cartItems = getLocalStorage("so-cart");
