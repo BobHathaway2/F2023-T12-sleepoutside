@@ -1,11 +1,11 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, getParams } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__list">Original Price: $${product.ListPrice}</p>
@@ -56,7 +56,7 @@ export default class ProductDetails {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
       "afterBegin",
-      productDetailsTemplate(this.product)
+      productDetailsTemplate(this.product.Result)
     );
   }
 }
