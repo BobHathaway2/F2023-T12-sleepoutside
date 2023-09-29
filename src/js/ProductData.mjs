@@ -9,7 +9,7 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
-  constructor(category) {
+  constructor() {
   }
   async getData(category) {
     const response = await fetch(baseURL + `products/search/${category}`);
