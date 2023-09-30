@@ -1,4 +1,5 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import totalAmount from "./superScript.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -64,7 +65,8 @@ export default class ProductDetails {
       search.quantity += 1
 
     }
-    setLocalStorage("so-cart", this.productArray); 
+    setLocalStorage("so-cart", this.productArray);
+    totalAmount() 
 
 
     // if (!this.productArray) {
