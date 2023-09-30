@@ -10,4 +10,3 @@ const productData = new ProductData();
 const productListElement = document.getElementById("product-list");
 const productListing = new ProductListing(category, productData, productListElement);
 productListing.init();
-
