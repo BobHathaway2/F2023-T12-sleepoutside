@@ -6,18 +6,14 @@ const cartFooter = document.querySelector(".cart-footer");
 function checkCart(){
   let cart = [];
   let currentCartContent = localStorage.getItem("so-cart");
-  if (currentCartContent) {
-      cart = currentCartContent;
-      const products = JSON.parse(cart);
-      const totalPrice = products.reduce((accumulator, products) => {
-          //return accumulator + products.FinalPrice;
-          return accumulator + (products.ListPrice - (products.Discount ?? 0));
-        }, 0);
+    cart = currentCartContent;
+    const products = JSON.parse(cart);
+    const totalPrice = products.reduce((accumulator, products) => {
+        //return accumulator + products.FinalPrice;
+        return accumulator + (products.ListPrice - (products.Discount ?? 0));
+      }, 0);
 
-      total.textContent = `Total: $ ${totalPrice}`;
-  }else{
-      cartFooter.style.display = "none";
-  }
+    total.textContent = `Total: $ ${totalPrice}`;
 }
 
 
@@ -25,7 +21,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>

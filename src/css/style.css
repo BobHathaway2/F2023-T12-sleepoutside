@@ -104,22 +104,21 @@ button {
 }
 
 .cart svg {
-  width: 38px;
+  width: 25px;
 }
 .cart:hover svg {
   fill: gray;
 }
-.cartAmount{
+.cartAmount {
   background-color: #f0a868;
-  width: 35px;
-  height: 35px;
-  left: 10px;
+  width: 15px;
+  height: 15px;
+  right: 0px;
   top: 10px;
   position: absolute;
   border-radius: 50px;
-  font-size: 30px;
+  font-size: 13px
 }
-
 /* End cart icon styles */
 
 .mission {
@@ -260,4 +259,8 @@ footer {
 
 .cart-card {
   position: relative;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
