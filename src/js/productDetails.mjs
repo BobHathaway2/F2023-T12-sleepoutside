@@ -6,7 +6,7 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__list">Original Price: $${product.ListPrice}</p>
@@ -54,7 +54,7 @@ export default class ProductDetails {
         Brand: product.Brand,
         Colors: product.Colors,
         Discount: product.Discount,
-        Image: product.Image,
+        Images: product.Images,
         ListPrice: product.ListPrice,
         DescriptionHtmlSimple: product.DescriptionHtmlSimple,
         quantity: 1
@@ -67,17 +67,6 @@ export default class ProductDetails {
     }
     setLocalStorage("so-cart", this.productArray);
     totalAmount() 
-
-
-    // if (!this.productArray) {
-    //   this.productArray = [];
-    // }
-    // let cartContent = getLocalStorage("so-cart");
-    // if (cartContent) {
-    //   this.productArray = cartContent;
-    // }
-    // this.productArray.push(product);
-    // setLocalStorage("so-cart", this.productArray);
   }
 
   renderProductDetails(selector) {

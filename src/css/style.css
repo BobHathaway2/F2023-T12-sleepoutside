@@ -109,7 +109,16 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+.cartAmount {
+  background-color: #f0a868;
+  width: 15px;
+  height: 15px;
+  right: 0px;
+  top: 10px;
+  position: absolute;
+  border-radius: 50px;
+  font-size: 13px
+}
 /* End cart icon styles */
 
 .mission {
