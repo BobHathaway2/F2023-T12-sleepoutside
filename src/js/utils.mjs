@@ -1,3 +1,5 @@
+import totalAmount from "./superScript.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -53,8 +55,11 @@ export async function loadHeaderFooter() {
   const footer = await loadTemplate("../partials/footer.html");
   const domHeader = document.getElementById("main-header");
   const domFooter = document.getElementById("main-footer");
-  renderWithTemplate(header, domHeader);
+  renderWithTemplate(header, domHeader);  
   renderWithTemplate(footer, domFooter);
+  totalAmount()
+
+  
 }
 
 export async function loadTemplate(path) {
