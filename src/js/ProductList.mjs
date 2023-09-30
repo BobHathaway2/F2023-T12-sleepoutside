@@ -1,6 +1,4 @@
-
 import { renderListWithTemplate } from "./utils.mjs";
-const titleSuffix = document.getElementById("category");
 
 export default class ProductListing {
   constructor(category, dataSource, listElement) {
@@ -12,7 +10,7 @@ export default class ProductListing {
   async init() {
     const products = await this.dataSource.getData(this.category);
     this.renderList(products);
-    titleSuffix.innerHTML = this.category;
+    document.querySelector(".title").innerHTML=this.category;
   }
 
   renderList(list, position = "afterbegin", clear = false) {
