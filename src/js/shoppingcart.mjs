@@ -13,7 +13,11 @@ function checkCart(){
         return accumulator + (products.ListPrice - (products.Discount ?? 0));
       }, 0);
 
-    total.textContent = `Total: $ ${totalPrice}`;
+    if(totalPrice > 0){
+    total.textContent = `Total: $ ${totalPrice}`;}
+    else{
+      total.style.display = "none";
+    }
 }
 
 
