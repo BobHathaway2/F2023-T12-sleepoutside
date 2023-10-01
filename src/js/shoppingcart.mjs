@@ -13,8 +13,11 @@ function checkCart(){
           //return accumulator + products.FinalPrice;
           return accumulator + (products.ListPrice - (products.Discount ?? 0));
         }, 0);
-
-      total.textContent = `Total: $ ${totalPrice}`;
+      if(totalPrice > 0){
+      total.textContent = `Total: $ ${totalPrice}`;}
+      else{
+        totalPrice.style.display ="none"
+      }
   }else{
       cartFooter.style.display = "none";
   }

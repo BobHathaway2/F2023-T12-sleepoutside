@@ -1,4 +1,3 @@
-
 import { renderListWithTemplate } from "./utils.mjs";
 
 export default class ProductListing {
@@ -9,9 +8,9 @@ export default class ProductListing {
   }
 
   async init() {
-    const products = await this.dataSource.getData();
-    const filteredProducts = this.filterTentsById(products);
-    this.renderList(filteredProducts);
+    const products = await this.dataSource.getData(this.category);
+    // const filteredProducts = this.filterTentsById(products);
+    this.renderList(products);
   }
 
   renderList(list, position = "afterbegin", clear = false) {

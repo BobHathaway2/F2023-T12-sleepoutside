@@ -261,3 +261,23 @@ footer {
 .cart-card {
   position: relative;
 }
+
+.shopicons{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.shopicons img{
+  width: 40%;
+}
+
+.shopicons a{
+  text-decoration: none;
+  color: var(--dark-grey);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+}
