@@ -5,7 +5,7 @@ export default class ProductListing {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
-        this.products = []; // Store the products
+        this.products = []; 
     }
 
     async init() {
@@ -15,7 +15,7 @@ export default class ProductListing {
         const priceSort = document.querySelector(".priceSort");
 
         abcButton.addEventListener("click", () => this.sortABC());
-        priceSort.addEventListener("click", () => this.sortPrice());
+        priceSort.addEventListener("click", () => this.sortPrice(this.products));
 
         this.renderList(this.products);
     }
@@ -24,14 +24,27 @@ export default class ProductListing {
         renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
     }
 
-    sortABC() {
-        const abcProducts = [...this.products].sort((a, b) => a.Name.localeCompare(b.Name));
-        this.renderList(abcProducts);
+    updateList(sortedProducts) {
+        this.renderList(sortedProducts, "afterbegin", true);
     }
 
-    sortPrice() {
-        const moneySort = [...this.products].sort((a, b) => a.FinalPrice - b.FinalPrice);
-        this.renderList(moneySort);
+    sortABC() {
+        const sortedProducts = [...this.products].sort((a, b) => {
+            return a.Name.localeCompare(b.Name);
+        });
+        this.updateList(sortedProducts);
+    }
+
+    sortPrice(products) {
+        const sortedProducts = [...products].sort((a, b) => {
+            if (a.FinalPrice < b.FinalPrice) {
+                return -1;
+            } else if (a.FinalPrice > b.FinalPrice) {
+                return 1;
+            }
+            return 0;
+        });
+        this.updateList(sortedProducts);
     }
 }
 
@@ -45,5 +58,3 @@ function productCardTemplate(product) {
         </a>
     </li>`;
 }
-
-
