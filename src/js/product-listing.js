@@ -15,5 +15,4 @@ header.appendChild(h2element);
 
 const productListing = new ProductListing(category, dataSource, listElement);
 
-
 productListing.init();
