@@ -117,7 +117,7 @@ button {
   top: 10px;
   position: absolute;
   border-radius: 50px;
-  font-size: 13px
+  font-size: 13px;
 }
 /* End cart icon styles */
 
@@ -263,4 +263,32 @@ footer {
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.shopicons {
+  display: flex;
+  flex-direction: row;
+}
+
+.shopicons img {
+  width: 40%;
+}
+
+.shopicons a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+}
+.sort button {
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  margin: 1rem;
+}
+
+.sort button:hover {
+  background-color: var(--secondary-color);
+  color: #ededed;
 }
