@@ -1,40 +1,12 @@
 import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./shoppingcart.mjs";
-import totalAmount from "./superScript.mjs";
-
 
 loadHeaderFooter();
 
-
-let cart = new ShoppingCart("so-cart", ".product-list")
+const cart = new ShoppingCart("so-cart", ".product-list")
 cart.renderCartContents();
 attachRemoveListeners();
 
-// function cartItemTemplate(item) {
-//   const newItem = `<li class="cart-card divider">
-//   <a href="#" class="cart-card__image">
-//     <img
-//       src="${item.Image}"
-//       alt="${item.Name}"
-//     />
-//   </a>
-//   <a href="#">
-//     <h2 class="card__name">${item.Name}</h2>
-//   </a>
-//   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-//   <span class="remove-item" data-id="${item.Id}">x</span>
-//   <p class="cart-card__quantity">qty:${item.quantity}</p>
-//   <p class="cart-card__list">Price: $${item.ListPrice}</p>
-//   <p class="cart-card__discount">Discount: $${(item.Discount ?? 0)}</p>
-//   <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>
-// </li>`;
-
-//   return newItem;
-// }
-
-// renderCartContents();
-
-// totalAmount()
 
 function removeItemFromCart(productId) {
   // Fetch from local storage
@@ -54,10 +26,9 @@ function removeItemFromCart(productId) {
   // Update the cart in local storage with the modified items
   localStorage.setItem("so-cart", JSON.stringify(cartItems));
 
-  totalAmount()
 
   // Re-render cart contents
-   cart = new ShoppingCart("so-cart", ".product-list")
+  const cart = new ShoppingCart("so-cart", ".product-list")
   cart.renderCartContents();
   attachRemoveListeners();
 }
