@@ -281,3 +281,14 @@ footer {
   text-align: center;
   font-weight: bold;
 }
+
+.sort button{
+  background-color: var(--primary-color);
+  color: var(--dark-grey);
+  margin: 1rem;
+}
+
+.sort button:hover{
+  background-color: var(--secondary-color);
+  color: #ededed;
+}
