@@ -32,6 +32,7 @@ export default class ExternalServices {
       },
       body : JSON.stringify(payload),
     };
+    console.log(options)
     return await fetch (baseURL + "checkout/", options).then(convertToJson);
   }
 }
