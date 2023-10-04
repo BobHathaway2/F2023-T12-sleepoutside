@@ -39,9 +39,10 @@ export default class CheckoutProcess{
 
     init(){
         this.list = getLocalStorage(this.key);
-
-        this.calculateSumm();
-        this.calculateOrderTotal();
+        if (this.list.length > 0) {
+          this.calculateSumm();
+          this.calculateOrderTotal();
+        }
     }
 
     calculateSumm(){
