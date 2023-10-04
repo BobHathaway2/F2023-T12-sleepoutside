@@ -42,12 +42,11 @@ export default class CheckoutProcess{
 
         this.calculateSumm();
         this.calculateOrderTotal();
-        this.checkout();
     }
 
     calculateSumm(){
         const totalItemsElement = document.querySelector("#itemTotal");
-        const amount = this.list.map((item) => item.ListPrice);
+        const amount = this.list.map((item) => item.ListPrice * item.quantity);
         this.itemTotal = amount.reduce((sum, item) => sum + item); 
         
         const itemAmount = this.list.length;
