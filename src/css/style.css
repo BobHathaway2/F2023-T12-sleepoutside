@@ -296,3 +296,8 @@ footer {
 
 .formInfo{display: flex;
   flex-direction: column;}
+
+  .checkoutBtn{
+    color: var(--secondary-color);
+    margin:.5rem;
+  }

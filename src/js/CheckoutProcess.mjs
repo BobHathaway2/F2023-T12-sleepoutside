@@ -1,16 +1,31 @@
 import { getLocalStorage } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+
+const services = new ExternalServices();
+
 
 function formDataToJSON(formElement) {
-    const formData = new FormData(formElement),
-      convertedJSON = {};
-  
-    formData.forEach(function (value, key) {
-      convertedJSON[key] = value;
-    });
-  
-    return convertedJSON;
-  }
+  const formData = new FormData(formElement),
+    convertedJSON = {};
 
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
+function packageItems(items) {
+    const simplifiedItems = items.map((item) => {
+      return {
+        id: item.Id,
+        price: item.FinalPrice,
+        name: item.Name,
+        quantity: 1,
+      };
+    });
+    return simplifiedItems;
+  }
 
 export default class CheckoutProcess{
     constructor(key){
@@ -66,7 +81,7 @@ export default class CheckoutProcess{
     async checkout(){
         const formElement = document.forms["checkout"];
 
-        const json = FormDataToJson(formElement);
+        const json = formDataToJSON(formElement);
 
         json.orderDate = new Date();
         json.orderTotal = this.orderTotal;
@@ -76,6 +91,7 @@ export default class CheckoutProcess{
         console.log(json);
         try{
             const res = await services.checkout(json);
+            
             console.log(res);  
         }catch(err){
             console.log(err);
