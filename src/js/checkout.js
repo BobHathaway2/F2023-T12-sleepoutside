@@ -3,5 +3,6 @@ import CheckoutProcess from "./CheckoutProcess.mjs";
 
 
 loadHeaderFooter();
-const checkout = new CheckoutProcess("so-cart", ".orderSumm");
+
+const checkout = new CheckoutProcess("so-cart");
 checkout.init();

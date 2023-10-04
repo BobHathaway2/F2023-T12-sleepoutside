@@ -26,15 +26,16 @@
 </head>
 <body>
     <h1>Checkout</h1>
-    <form class="checkoutForm">
-
+    <form class="checkoutForm" name="checkout">
+      <fieldset>
       <legend>Customer Information</legend>
         <label for="first_name">First Name:</label>
         <input type="text" id="first_name" name="first_name" required>
 
         <label for="last_name">Last Name:</label>
         <input type="text" id="last_name" name="last_name" required>
-
+      </fieldset>
+      <fieldset>
         <legend>Address</legend>
         <div class="formInfo">
         <label for="street_address">Street Address:</label>
@@ -49,7 +50,8 @@
 
         <label for="zip_code">Zip Code:</label>
         <input type="text" id="zip_code" name="zip_code" required>
-        
+        </fieldset>
+        <fieldset>
         <legend>Payment Information</legend>
         <div class="formInfo">
         <label for="credit_card_number">Credit Card Number:</label>
@@ -61,14 +63,14 @@
 
         <label for="security_code">Security Code:</label>
         <input type="text" id="security_code" name="security_code" required>
-
+        </fieldset>
         <input type="submit" value="Checkout">
     </form>
 
     <div class="orderSumm">
         <h2> Order Summary</h2>
         <div class="orderInfo">
-          <p id="subTotal"><span class="itemTotal"></span></p>
+          <p id="itemTotal"></p>
           <p id="shipping"></p>
           <p id="tax"></p>
         </div>
