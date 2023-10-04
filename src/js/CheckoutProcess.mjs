@@ -16,6 +16,7 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
+
     const simplifiedItems = items.map((item) => {
       return {
         id: item.Id,
@@ -47,7 +48,7 @@ export default class CheckoutProcess{
 
     calculateSumm(){
         const totalItemsElement = document.querySelector("#itemTotal");
-        const amount = this.list.map((item) => item.ListPrice);
+        const amount = this.list.map((item) => item.ListPrice * item.quantity);
         this.itemTotal = amount.reduce((sum, item) => sum + item); 
         
         const itemAmount = this.list.length;
