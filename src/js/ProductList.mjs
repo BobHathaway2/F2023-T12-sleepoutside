@@ -5,11 +5,16 @@ export default class ProductListing {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
-        this.products = []; 
+        this.products = [];
     }
 
     async init() {
-        this.products = await this.dataSource.getData(this.category);
+        try {
+            this.products = await this.dataSource.getData(this.category);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+            this.products = [];
+        }
 
         const abcButton = document.querySelector(".abcSort");
         const priceSort = document.querySelector(".priceSort");
@@ -17,7 +22,11 @@ export default class ProductListing {
         abcButton.addEventListener("click", () => this.sortABC());
         priceSort.addEventListener("click", () => this.sortPrice(this.products));
 
-        this.renderList(this.products);
+        if (Array.isArray(this.products) && this.products.length > 0) {
+            this.renderList(this.products);
+        } else {
+            console.warn("No products to display.");
+        }
     }
 
     renderList(list, position = "afterbegin", clear = false) {
@@ -29,17 +38,16 @@ export default class ProductListing {
     }
 
     sortABC() {
-      const sortedProducts = [...this.products].sort((a, b) => a.Name.localeCompare(b.Name));
-      this.updateList(sortedProducts);
-  }
-  
-  sortPrice(products) {
-      const sortedProducts = [...products].sort((a, b) => 
-          a.FinalPrice < b.FinalPrice ? -1 : a.FinalPrice > b.FinalPrice ? 1 : 0
-      );
-      this.updateList(sortedProducts);
-  }
-  
+        const sortedProducts = [...this.products].sort((a, b) => a.Name.localeCompare(b.Name));
+        this.updateList(sortedProducts);
+    }
+
+    sortPrice(products) {
+        const sortedProducts = [...products].sort((a, b) => 
+            a.FinalPrice < b.FinalPrice ? -1 : a.FinalPrice > b.FinalPrice ? 1 : 0
+        );
+        this.updateList(sortedProducts);
+    }
 }
 
 function productCardTemplate(product) {

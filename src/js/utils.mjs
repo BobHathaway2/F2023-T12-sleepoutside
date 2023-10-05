@@ -41,6 +41,12 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 }
 
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  if (!Array.isArray(list)) {
+    console.error("Provided list is not an array:", list);
+    return;
+}
+
+
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -78,3 +84,6 @@ export function totalAmount (){
       cartAmount.innerHTML = 0;
   }
 }
+
+
+

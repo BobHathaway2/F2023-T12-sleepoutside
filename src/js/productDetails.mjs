@@ -25,12 +25,12 @@ export default class ProductDetails {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    this.productArray = [];
   }
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
     this.renderProductDetails("main");
-
     document
       .getElementById("addToCart")
       .addEventListener("click",this.addToCart.bind(this));
@@ -43,8 +43,6 @@ export default class ProductDetails {
   addProduct(product) {
     this.productArray = getLocalStorage("so-cart") || [];
     let search = this.productArray.find((item) => item.Id === product.Id);
-    console.log(product.Id);
-
     if (search === undefined) {
       this.productArray.push({
         Id: product.Id,
@@ -57,15 +55,13 @@ export default class ProductDetails {
         ListPrice: product.ListPrice,
         DescriptionHtmlSimple: product.DescriptionHtmlSimple,
         quantity: 1
-
       })
     }
     else{
       search.quantity += 1
-
     }
     setLocalStorage("so-cart", this.productArray);
-    totalAmount() 
+    totalAmount();
   }
 
   renderProductDetails(selector) {

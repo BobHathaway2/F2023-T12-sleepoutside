@@ -311,12 +311,68 @@ footer {
 }
 
 
-.formInfo{display: flex;
+/* .formInfo{display: flex;
   flex-direction: column;}
 
-  .checkoutBtn{
+.checkoutBtn{
     color: var(--secondary-color);
     margin:.5rem;
-  }
+} */
 
-  
+
+ 
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+}
+
+.fieldsetWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+fieldset {
+  flex: 1; 
+  padding: 1rem;
+  min-height: 200px;
+}
+
+.fieldsetWrapper legend {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.checkoutForm button {
+  margin: 1rem;
+  align-self: flex-start;
+}
+
+label {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .checkoutForm {
+      flex-direction: column;
+  }
+  .fieldsetWrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+#shipping, #tax, #total {
+  display: none;
+}

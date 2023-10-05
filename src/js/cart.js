@@ -32,6 +32,7 @@ function addItemToCart(productId) {
   }
   cart = new ShoppingCart("so-cart", ".product-list");
   cart.renderCartContents();
+  totalAmount();
 }
 
 // Summary header of the code goes here
