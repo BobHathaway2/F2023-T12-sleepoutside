@@ -1,5 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-import totalAmount from "./superScript.mjs";
+import { setLocalStorage, getLocalStorage, totalAmount } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>

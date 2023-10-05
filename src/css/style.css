@@ -257,6 +257,23 @@ footer {
   color: var(--dark-grey) !important;
 }
 
+.add-item {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  cursor: pointer;
+  background-color: var(--dark-grey);
+  color: white;
+  padding: 3.5px 5px 3.5px 5px;
+  border-radius: 30%;
+  font-weight: bold;
+}
+
+.add-item:hover {
+  background-color: green !important ;
+  color: whitesmoke !important;
+}
+
 .cart-card {
   position: relative;
 }
@@ -301,3 +318,5 @@ footer {
     color: var(--secondary-color);
     margin:.5rem;
   }
+
+  

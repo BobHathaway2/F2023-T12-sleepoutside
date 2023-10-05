@@ -24,15 +24,20 @@ function checkCart(){
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
-    <img
-      src="${item.Images.PrimarySmall}"
-      alt="${item.Name}"
-    />
+    <img src="${item.Images.PrimaryMedium}" 
+        srcset="${item.Images.PrimaryLarge} 800w, 
+                ${item.Images.PrimaryMedium} 500w, 
+                ${item.Images.PrimarySmall} 300w"
+        sizes="(min-width: 800px) 800px,
+               (min-width: 500px) 500px,
+               300px" 
+        alt="${item.Name}" />
   </a>
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <span class="add-item" data-id="${item.Id}">+</span>
   <span class="remove-item" data-id="${item.Id}">x</span>
   <p class="cart-card__quantity">qty:${item.quantity} </p>
   <p class="cart-card__list">Price: $${item.ListPrice}</p>
