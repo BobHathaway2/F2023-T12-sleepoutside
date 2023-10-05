@@ -87,7 +87,7 @@ export default class CheckoutProcess{
         json.orderDate = new Date();
         json.orderTotal = this.orderTotal;
         json.tax = this.tax;
-        json.shipping = this.shipping;
+        json.shipping = this.shipping
         json.items = packageItems(this.list);
         console.log(json);
         try{
