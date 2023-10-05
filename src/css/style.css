@@ -292,3 +292,12 @@ footer {
   background-color: var(--secondary-color);
   color: #ededed;
 }
+
+
+.formInfo{display: flex;
+  flex-direction: column;}
+
+  .checkoutBtn{
+    color: var(--secondary-color);
+    margin:.5rem;
+  }

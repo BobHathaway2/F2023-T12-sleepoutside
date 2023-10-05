@@ -10,7 +10,7 @@ function checkCart(){
     const products = JSON.parse(cart);
     const totalPrice = products.reduce((accumulator, products) => {
         //return accumulator + products.FinalPrice;
-        return accumulator + (products.ListPrice - (products.Discount ?? 0));
+        return accumulator + (products.ListPrice * products.quantity - (products.Discount ?? 0));
       }, 0);
 
     if(totalPrice > 0){
@@ -50,8 +50,9 @@ export default class ShoppingCart {
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    if(cartItems){const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-    checkCart();
+    checkCart();}
+    
   }
 }
