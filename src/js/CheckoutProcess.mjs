@@ -16,16 +16,14 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
-    const simplifiedItems = items.map((item) => {
-      return {
-        id: item.Id,
-        price: item.FinalPrice,
-        name: item.Name,
-        quantity: 1,
-      };
-    });
-    return simplifiedItems;
-  }
+  const simplifiedItems = items.map(item => ({
+      id: item.Id,
+      price: item.FinalPrice,
+      name: item.Name,
+      quantity: item.quantity,
+  }));
+  return simplifiedItems;
+}
 
 export default class CheckoutProcess{
     constructor(key){
@@ -38,7 +36,14 @@ export default class CheckoutProcess{
     }
 
     init(){
-        this.list = getLocalStorage(this.key);
+        
+try {
+    this.list = getLocalStorage(this.key);
+} catch (error) {
+    console.error("Error retrieving items from local storage:", error);
+    this.list = [];
+}
+
         if (this.list.length > 0) {
           this.calculateSumm();
           this.calculateOrderTotal();
@@ -50,7 +55,8 @@ export default class CheckoutProcess{
         const amount = this.list.map((item) => item.ListPrice * item.quantity);
         this.itemTotal = amount.reduce((sum, item) => sum + item); 
         
-        const itemAmount = this.list.length;
+        // const itemAmount = this.list.length;
+        const itemAmount = this.list.reduce((sum, item) => sum + item.quantity, 0);
         totalItemsElement.innerText = `Subtotal (${itemAmount}): $${this.itemTotal.toFixed(2)}`;
     }
 
@@ -82,6 +88,12 @@ export default class CheckoutProcess{
         const formElement = document.forms["checkout"];
 
         const json = formDataToJSON(formElement);
+
+        
+if (!json || !json.items || json.items.length === 0) {
+    console.error("Invalid checkout data or empty cart.");
+    return;
+}
 
         json.orderDate = new Date();
         json.orderTotal = this.orderTotal;
