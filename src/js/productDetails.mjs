@@ -40,10 +40,10 @@ export default class ProductDetails {
     const svgBag = document.querySelector("#svgBag");
     addBtn.addEventListener("click", (e) =>{
       e.preventDefault();
-      svgBag.classList.add("animate");
+      svgBag.setAttribute("id","animate");
 
       setTimeout(() => {
-        svgBag.classList.remove("animate");
+        svgBag.removeAttribute("id","animate");
       }, 1000);
     });
   }

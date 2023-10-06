@@ -311,7 +311,7 @@ footer {
   }
 
   /* CSS Animations  */
-.animate{
+#animate{
   animation: scaleAnimation 1s ease;
 }
 
