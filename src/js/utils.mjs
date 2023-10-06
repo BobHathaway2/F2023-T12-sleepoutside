@@ -139,3 +139,11 @@ export function showToast(message) {
       overlay.className = "overlay";
   }, 10000);
 }
+export function calculateDiscountPercentage(originalPrice, discountedPrice) {
+  let discount = originalPrice - discountedPrice;
+  let discountPercentage = (discount / originalPrice) * 100;
+  return {
+    discountPercentage: Math.round(discountPercentage),
+    discount: (discount.toFixed(2))
+  };
+}

@@ -29,6 +29,11 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  width: 100%;
+  background-color: whitesmoke;
 }
 .logo {
   line-height: 60px;
@@ -238,7 +243,19 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+  border-top: 2px solid var(--primary-color);
+  padding: 0 10px;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 20;
+  background-color: whitesmoke;
 }
+#main-footer {
+  border-top: 2px solid var(--primary-color);
+  padding: 1em;
+}
+
 
 .remove-item {
   position: absolute;
@@ -511,4 +528,71 @@ label {
   margin: 0;
   font-style: italic;
   font-weight: bold;
+}
+
+.product-card__discount {
+  font-size:x-small;
+  color: #737676;
+  padding: .5em;
+  margin: 0;
+}
+
+.product-card__price {
+  margin: .1em;
+  font-weight: bold;
+}
+
+.product-card__price span{
+  font-size: clamp(1em, 3vw, 2em);
+}
+
+.list-price {
+  text-decoration: line-through;
+}
+
+.discount-percent {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  flex-wrap: wrap;
+  font-size: small;
+}
+
+.discount-percent p{
+  color: azure;
+  margin: 0;
+  background-color: red;
+  padding: .5em;
+  border-radius: 3px;
+}
+
+.deal {
+  color: red;
+  font-weight: bold;
+  padding: .1em;
+}
+
+.checkoutBtn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  margin: 10px 2px;
+  display: flex;
+  display: inline-block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.checkoutBtn:hover {
+  background-color: #45a049; 
+}
+
+.cart-total {
+  font-size: x-large;
+  font-weight: bolder;
 }
