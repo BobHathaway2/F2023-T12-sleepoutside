@@ -85,5 +85,57 @@ export function totalAmount (){
   }
 }
 
-
-
+// Feature description goes here
+export function alertMessage(message, scroll = true, duration = 30000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<span class="alert-message">${message} <span class="alert-close">X</span></span>`;
+  let timer;
+  alert.addEventListener("click", function(e) {
+      if(e.target.classList.contains("alert-close")) {
+          clearTimeout(timer);  
+          fadeOutAndRemove(this);
+      }
+  });
+  const header = document.querySelector("header");
+  let alertContainer = header.querySelector(".alert-container");
+  if (!alertContainer) {
+      alertContainer = document.createElement("div");
+      alertContainer.classList.add("alert-container");
+      header.prepend(alertContainer);
+  }
+  alertContainer.appendChild(alert);
+  if (scroll)
+      window.scrollTo(0,0);
+  timer = setTimeout(() => {
+      fadeOutAndRemove(alert);
+  }, duration);
+  function fadeOutAndRemove(element) {
+    element.style.animation = "fadeOut 0.5s forwards";
+    setTimeout(() => {
+        element.remove();
+    }, 500);
+  }
+}
+// Feature description goes here
+export function showToast(message) {
+  let toast = document.getElementById("toast");
+  let overlay = document.getElementById("overlay");
+  if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "toast";
+      document.body.appendChild(toast);
+  }
+  if (!overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "overlay";
+      document.body.appendChild(overlay);
+  }
+  toast.innerHTML = message;
+  toast.className = "toast show";
+  overlay.className = "overlay show";
+  setTimeout(() => {
+      toast.className = "toast";
+      overlay.className = "overlay";
+  }, 10000);
+}

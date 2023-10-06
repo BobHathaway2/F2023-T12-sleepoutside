@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage, showToast } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -31,7 +31,6 @@ export default class CheckoutProcess{
         this.shipping = 0;
         this.orderTotal = 0;
     }
-
     init(){
         
 try {
@@ -87,18 +86,34 @@ try {
         json.tax = this.tax;
         json.shipping = this.shipping;
         json.items = packageItems(this.list);
-        console.log(json);
+        console.log("Attempting to submit checkout data:", json);
         try {
           const data = await services.checkout(json);
           if (data.orderId) {
-          // if (res.status >= 200 && res.status < 300) {
             console.log("Checkout submitted successfully:", data);
+            alertMessage(`Order Processing...`);
+            setTimeout(() => {
+              showToast("You will be redirected in 10 seconds.");
+            }, 5000);
+              setTimeout(() => {
+                  location.assign("../checkout/success.html");
+              }, 15000);
+
+
             localStorage.clear();
-          // } else if (res.status >= 400 && res.status < 500) {
           } else {
             console.log("Checkout submission failed. Received:", data);
+            for (let key in data) {
+              if (Object.prototype.hasOwnProperty.call(data, key)) {
+                  alertMessage(`Error: ${data[key]}`);
+              }
+            }
           }
         } catch (err) {
           console.log("Unexpected error during checkout.", err);
+          alertMessage("An unexpected error occurred.");
+            setTimeout(() => {
+                location.assign("../checkout/failed.html");
+            }, 15000);
         }
     }}
