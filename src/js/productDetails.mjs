@@ -41,6 +41,7 @@ export default class ProductDetails {
     addBtn.addEventListener("click", (e) =>{
       e.preventDefault();
       svgBag.classList.add("animate");
+      
 
       setTimeout(() => {
         svgBag.classList.remove("animate");
