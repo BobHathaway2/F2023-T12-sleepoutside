@@ -96,6 +96,10 @@ export default class CheckoutProcess{
             setLocalStorage("so-cart", []);
             document.location.href = './success.html';
         }catch(err){
+            removeAllAlerts();
+            for (let message in err.message) {
+              alertMessage(err.message[message]);
+            }    
             console.log(err);
         }
     }
