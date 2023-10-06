@@ -38,14 +38,14 @@ export default class ProductDetails {
 
     const addBtn = document.querySelector("#addToCart");
     const svgBag = document.querySelector(".cart");
-    addBtn.addEventListener("click", (e) =>{
-      e.preventDefault();
+    addBtn.addEventListener("click", () =>{
+      // e.preventDefault();
       svgBag.classList.add("animate");
       
 
       setTimeout(() => {
         svgBag.classList.remove("animate");
-      }, 5000);
+      }, 3000);
     });
   }
 
@@ -56,7 +56,7 @@ export default class ProductDetails {
   addProduct(product) {
     this.productArray = getLocalStorage("so-cart") || [];
     let search = this.productArray.find((item) => item.Id === product.Id);
-    console.log(product.Id);
+    // console.log(product.Id);
 
     if (search === undefined) {
       this.productArray.push({
