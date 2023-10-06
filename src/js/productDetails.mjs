@@ -37,13 +37,13 @@ export default class ProductDetails {
       .addEventListener("click",this.addToCart.bind(this));
 
     const addBtn = document.querySelector("#addToCart");
-    const svgBag = document.querySelector("#svgBag");
+    const svgBag = document.querySelector(".cart");
     addBtn.addEventListener("click", (e) =>{
       e.preventDefault();
-      svgBag.setAttribute("id","animate");
+      svgBag.classList.add("animate");
 
       setTimeout(() => {
-        svgBag.removeAttribute("id","animate");
+        svgBag.classList.remove("animate");
       }, 5000);
     });
   }
