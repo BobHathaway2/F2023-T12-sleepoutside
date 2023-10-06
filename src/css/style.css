@@ -29,6 +29,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+
 }
 .logo {
   line-height: 60px;
@@ -90,7 +91,14 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  transition: transform 0.2s ease-out;
 }
+
+button:active{
+  transform:scale(0.90);
+}
+
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -301,3 +309,21 @@ footer {
     color: var(--secondary-color);
     margin:.5rem;
   }
+
+  /* CSS Animations  */
+.animate{
+  animation: scaleAnimation 1s ease;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(20);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
