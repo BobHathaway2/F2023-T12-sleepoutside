@@ -36,17 +36,7 @@ export default class ProductDetails {
       .getElementById("addToCart")
       .addEventListener("click",this.addToCart.bind(this));
 
-    const addBtn = document.querySelector("#addToCart");
-    const svgBag = document.querySelector(".cart");
-    addBtn.addEventListener("click", () =>{
-      // e.preventDefault();
-      svgBag.classList.add("animate");
-      
-
-      setTimeout(() => {
-        svgBag.classList.remove("animate");
-      }, 3000);
-    });
+    
   }
 
   addToCart() {
@@ -79,6 +69,18 @@ export default class ProductDetails {
     }
     setLocalStorage("so-cart", this.productArray);
     totalAmount() 
+
+    const addBtn = document.querySelector("#addToCart");
+    const svgBag = document.querySelector(".cart");
+    addBtn.addEventListener("click", (e) =>{
+      e.preventDefault();
+      svgBag.classList.add("animate");
+      
+
+      setTimeout(() => {
+        svgBag.classList.remove("animate");
+      }, 3000);
+    });
   }
 
   renderProductDetails(selector) {
