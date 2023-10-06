@@ -1,7 +1,7 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
 
-aync function convertToJson(res) {
+async function convertToJson(res) {
   const resJSON = await res.json();
   if (res.ok) {
     return resJSON;

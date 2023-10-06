@@ -81,7 +81,7 @@ export function alertMessage(message, scroll = true) {
   // add a listener to the alert to see if they clicked on the X
   // if they did then remove the child
   alert.addEventListener('click', function(e) {
-      if( ) { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
+      if(e.target.tagName == "SPAN") { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
         main.removeChild(this);
       }
   })
