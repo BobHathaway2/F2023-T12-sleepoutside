@@ -504,3 +504,11 @@ label {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 29;
 }
+
+#breadcrumb {
+  font-size: 1em;
+  color: #737676;
+  margin: 0;
+  font-style: italic;
+  font-weight: bold;
+}

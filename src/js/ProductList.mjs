@@ -19,6 +19,8 @@ export default class ProductListing {
         const abcButton = document.querySelector(".abcSort");
         const priceSort = document.querySelector(".priceSort");
 
+        updateBreadcrumb(this.category, this.products.length);
+
         abcButton.addEventListener("click", () => this.sortABC());
         priceSort.addEventListener("click", () => this.sortPrice(this.products));
 
@@ -59,4 +61,12 @@ function productCardTemplate(product) {
             <p class="product-card__price">$${product.FinalPrice}</p>
         </a>
     </li>`;
+}
+
+// Update the breadcrumb with category and item count
+function updateBreadcrumb(category, itemCount) {
+  const breadcrumb = document.getElementById("breadcrumb");
+  if (breadcrumb) {
+      breadcrumb.innerHTML = `${[...category][0].toUpperCase() + category.slice(1)}&#8594 (showing ${itemCount} items)`;
+  }
 }

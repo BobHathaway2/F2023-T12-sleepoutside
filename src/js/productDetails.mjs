@@ -30,6 +30,7 @@ export default class ProductDetails {
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
+    updateBreadcrumb(this.product.Category, this.product.NameWithoutBrand);
     this.renderProductDetails("main");
     document
       .getElementById("addToCart")
@@ -71,5 +72,13 @@ export default class ProductDetails {
       "afterBegin",
       productDetailsTemplate(this.product)
     );
+  }
+}
+
+// Update the breadcrumb with category and product name.
+function updateBreadcrumb(category, productName) {
+  const breadcrumb = document.getElementById("breadcrumb");
+  if (breadcrumb) {
+      breadcrumb.innerHTML = `<a href="/product-listing/index.html?category=${category}">${[...category][0].toUpperCase() + category.slice(1)}</a> &#8594 ${productName}`;
   }
 }
