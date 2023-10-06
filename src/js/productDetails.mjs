@@ -44,7 +44,7 @@ export default class ProductDetails {
 
       setTimeout(() => {
         svgBag.removeAttribute("id","animate");
-      }, 1000);
+      }, 5000);
     });
   }
 
