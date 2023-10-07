@@ -4,7 +4,7 @@ import { loadHeaderFooter, getParams } from "./utils.mjs";
 
 loadHeaderFooter();
 
-const category = getParams(tents);
+const category = getParams("category");
 
 const dataSource = new ExternalServices();
 const listElement = document.querySelector(".product-list");
