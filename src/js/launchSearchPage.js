@@ -10,10 +10,7 @@ function doSearch() {
     let searchField = document.getElementById("searchField");
     let searchValue = searchField.value;
     if (searchValue) {
-        const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"]
-        if (categories.includes(searchValue)) {
-            window.location.replace("./product-listing/index.html?category=" + searchValue)
-        }
+        window.location.replace("./product-listing/search.html?category=" + searchValue)
     }
 }
 
