@@ -35,6 +35,7 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click",this.addToCart.bind(this));
+
   }
 
   addToCart() {
@@ -45,6 +46,8 @@ export default class ProductDetails {
   addProduct(product) {
     this.productArray = getLocalStorage("so-cart") || [];
     let search = this.productArray.find((item) => item.Id === product.Id);
+    // console.log(product.Id);
+    
     if (search === undefined) {
       this.productArray.push({
         Id: product.Id,
@@ -63,7 +66,7 @@ export default class ProductDetails {
       search.quantity += 1
     }
     setLocalStorage("so-cart", this.productArray);
-    totalAmount();
+    totalAmount()
 
     const addBtn = document.querySelector("#addToCart");
     const svgBag = document.querySelector(".cart");
