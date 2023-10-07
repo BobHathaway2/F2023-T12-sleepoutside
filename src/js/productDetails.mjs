@@ -74,8 +74,6 @@ export default class ProductDetails {
     );
   }
 }
-
-// Update the breadcrumb with category and product name.
 function updateBreadcrumb(category, productName) {
   const breadcrumb = document.getElementById("breadcrumb");
   if (breadcrumb) {

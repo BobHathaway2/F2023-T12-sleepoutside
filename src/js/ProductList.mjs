@@ -81,7 +81,6 @@ function productCardTemplate(product) {
     </li>`;
 }
 
-// Update the breadcrumb with category and item count
 function updateBreadcrumb(category, itemCount) {
   const breadcrumb = document.getElementById("breadcrumb");
   if (breadcrumb) {
