@@ -35,20 +35,18 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click",this.addToCart.bind(this));
+}
 
-  }
-
-  addToCart() {
+addToCart() {
     this.addProduct(this.product);
     alertMessage("Product successfully added to the cart!");
-  }
+}
 
-  addProduct(product) {
-    this.productArray = getLocalStorage("so-cart") || [];
-    let search = this.productArray.find((item) => item.Id === product.Id);
-    // console.log(product.Id);
-    
-    if (search === undefined) {
+addProduct(product) {
+  this.productArray = getLocalStorage("so-cart") || [];
+  let search = this.productArray.find((item) => item.Id === product.Id);
+
+  if (search === undefined) {
       this.productArray.push({
         Id: product.Id,
         Name: product.Name,
@@ -60,26 +58,25 @@ export default class ProductDetails {
         ListPrice: product.ListPrice,
         DescriptionHtmlSimple: product.DescriptionHtmlSimple,
         quantity: 1
-      })
+      });
     }
-    else{
-      search.quantity += 1
+    else {
+        search.quantity += 1;
     }
     setLocalStorage("so-cart", this.productArray);
-    totalAmount()
+    totalAmount();
 
     const addBtn = document.querySelector("#addToCart");
     const svgBag = document.querySelector(".cart");
-    addBtn.addEventListener("click", (e) =>{
-      e.preventDefault();
-      svgBag.classList.add("animate");
-      
-
-      setTimeout(() => {
-        svgBag.classList.remove("animate");
-      }, 3000);
+    addBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        svgBag.classList.add("animate");
+        
+        setTimeout(() => {
+            svgBag.classList.remove("animate");
+        }, 3000);
     });
-  }
+}
 
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
