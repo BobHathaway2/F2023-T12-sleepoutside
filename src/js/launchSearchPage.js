@@ -4,6 +4,7 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 
 let searchButton = document.getElementById("searchButton");
+let searchField = document.getElementById("searchField");
 
 function doSearch() {
     const dataSource = new ExternalServices();
@@ -22,6 +23,11 @@ function doSearch() {
 
 
 searchButton.addEventListener("click", (event) => {
+    event.preventDefault();
+     doSearch();
+  });
+
+  searchField.addEventListener("selectionchange", (event) => {
     event.preventDefault();
      doSearch();
   });
