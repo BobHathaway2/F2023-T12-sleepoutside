@@ -10,8 +10,8 @@ function checkCart() {
   }, 0);
 
   if (totalPrice > 0) {
-      total.textContent = `Total: $ ${totalPrice.toFixed(2)}`;
-  } else {
+      total.textContent = `Total: $ ${totalPrice.toFixed(2)}`;}
+      else {
       total.style.display = "none";
   }
 }

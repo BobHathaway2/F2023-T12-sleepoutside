@@ -64,6 +64,18 @@ export default class ProductDetails {
     }
     setLocalStorage("so-cart", this.productArray);
     totalAmount();
+
+    const addBtn = document.querySelector("#addToCart");
+    const svgBag = document.querySelector(".cart");
+    addBtn.addEventListener("click", (e) =>{
+      e.preventDefault();
+      svgBag.classList.add("animate");
+      
+
+      setTimeout(() => {
+        svgBag.classList.remove("animate");
+      }, 3000);
+    });
   }
 
   renderProductDetails(selector) {
