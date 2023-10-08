@@ -34,7 +34,7 @@ export default class ProductDetails {
     this.renderProductDetails("main");
     document
       .getElementById("addToCart")
-      .addEventListener("click",this.addToCart.bind(this));
+      .addEventListener("click", this.addToCart.bind(this));
 }
 
 addToCart() {
@@ -43,24 +43,23 @@ addToCart() {
 }
 
 addProduct(product) {
-  this.productArray = getLocalStorage("so-cart") || [];
-  let search = this.productArray.find((item) => item.Id === product.Id);
+    this.productArray = getLocalStorage("so-cart") || [];
+    let search = this.productArray.find((item) => item.Id === product.Id);
 
-  if (search === undefined) {
-      this.productArray.push({
-        Id: product.Id,
-        Name: product.Name,
-        ColorName: product.ColorName,
-        Brand: product.Brand,
-        Colors: product.Colors,
-        Discount: product.Discount,
-        Images: product.Images,
-        ListPrice: product.ListPrice,
-        DescriptionHtmlSimple: product.DescriptionHtmlSimple,
-        quantity: 1
-      });
-    }
-    else {
+    if (search === undefined) {
+        this.productArray.push({
+            Id: product.Id,
+            Name: product.Name,
+            ColorName: product.ColorName,
+            Brand: product.Brand,
+            Colors: product.Colors,
+            Discount: product.Discount,
+            Images: product.Images,
+            ListPrice: product.ListPrice,
+            DescriptionHtmlSimple: product.DescriptionHtmlSimple,
+            quantity: 1
+        });
+    } else {
         search.quantity += 1;
     }
     setLocalStorage("so-cart", this.productArray);
@@ -78,7 +77,7 @@ addProduct(product) {
     });
 }
 
-  renderProductDetails(selector) {
+renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
       "afterBegin",
@@ -87,8 +86,8 @@ addProduct(product) {
   }
 }
 function updateBreadcrumb(category, productName) {
-  const breadcrumb = document.getElementById("breadcrumb");
-  if (breadcrumb) {
-      breadcrumb.innerHTML = `<a href="/product-listing/index.html?category=${category}">${[...category][0].toUpperCase() + category.slice(1)}</a> &#8594 ${productName}`;
-  }
+    const breadcrumb = document.getElementById("breadcrumb");
+    if (breadcrumb) {
+        breadcrumb.innerHTML = `<a href="/product-listing/index.html?category=${category}">${[...category][0].toUpperCase() + category.slice(1)}</a> &#8594 ${productName}`;
+    }
 }
