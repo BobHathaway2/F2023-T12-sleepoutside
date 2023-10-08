@@ -1,5 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
-import totalAmount from "./superScript.mjs";
+import { setLocalStorage, getLocalStorage, totalAmount, alertMessage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -26,48 +25,46 @@ export default class ProductDetails {
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    this.productArray = [];
   }
 
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
+    updateBreadcrumb(this.product.Category, this.product.NameWithoutBrand);
     this.renderProductDetails("main");
-
     document
       .getElementById("addToCart")
-      .addEventListener("click",this.addToCart.bind(this));
+      .addEventListener("click", this.addToCart.bind(this));
+}
 
-    
-  }
+addToCart() {
+    this.addProduct(this.product);
+    alertMessage("Product successfully added to the cart!");
+}
 
-  addToCart() {
-    this.addProduct(this.product); 
-  }
-
-  addProduct(product) {
+addProduct(product) {
     this.productArray = getLocalStorage("so-cart") || [];
     let search = this.productArray.find((item) => item.Id === product.Id);
     // console.log(product.Id);
 
     if (search === undefined) {
-      this.productArray.push({
-        Id: product.Id,
-        Name: product.Name,
-        ColorName: product.ColorName,
-        Brand: product.Brand,
-        Colors: product.Colors,
-        Discount: product.Discount,
-        Images: product.Images,
-        ListPrice: product.ListPrice,
-        DescriptionHtmlSimple: product.DescriptionHtmlSimple,
-        quantity: 1
-
-      })
-    }
-    else{
-      search.quantity += 1
-
+        this.productArray.push({
+            Id: product.Id,
+            Name: product.Name,
+            ColorName: product.ColorName,
+            Brand: product.Brand,
+            Colors: product.Colors,
+            Discount: product.Discount,
+            Images: product.Images,
+            ListPrice: product.ListPrice,
+            DescriptionHtmlSimple: product.DescriptionHtmlSimple,
+            quantity: 1
+        });
+    } else {
+        search.quantity += 1;
     }
     setLocalStorage("so-cart", this.productArray);
+
     totalAmount() 
 
     const addBtn = document.querySelector("#addToCart");
@@ -83,11 +80,17 @@ export default class ProductDetails {
     });
   }
 
-  renderProductDetails(selector) {
+renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(
       "afterBegin",
       productDetailsTemplate(this.product)
     );
   }
+}
+function updateBreadcrumb(category, productName) {
+    const breadcrumb = document.getElementById("breadcrumb");
+    if (breadcrumb) {
+        breadcrumb.innerHTML = `<a href="/product-listing/index.html?category=${category}">${[...category][0].toUpperCase() + category.slice(1)}</a> &#8594 ${productName}`;
+    }
 }
