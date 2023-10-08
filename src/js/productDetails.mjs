@@ -40,6 +40,10 @@ export default class ProductDetails {
 addToCart() {
     this.addProduct(this.product);
     alertMessage("Product successfully added to the cart!");
+    svgBag.classList.add("animate");
+    setTimeout(() => {
+      svgBag.classList.remove("animate");
+    }, 3000);
 }
 
 addProduct(product) {
@@ -65,19 +69,7 @@ addProduct(product) {
     }
     setLocalStorage("so-cart", this.productArray);
 
-    totalAmount() 
-
-    const addBtn = document.querySelector("#addToCart");
-    const svgBag = document.querySelector(".cart");
-    addBtn.addEventListener("click", (e) =>{
-      e.preventDefault();
-      svgBag.classList.add("animate");
-      
-
-      setTimeout(() => {
-        svgBag.classList.remove("animate");
-      }, 3000);
-    });
+    totalAmount()
   }
 
 renderProductDetails(selector) {
