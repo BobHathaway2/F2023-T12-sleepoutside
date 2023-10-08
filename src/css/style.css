@@ -29,11 +29,15 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+<<<<<<< HEAD
   position: sticky;
   z-index: 20;
   top: 0;
   width: 100%;
   background-color: whitesmoke;
+=======
+
+>>>>>>> origin
 }
 .logo {
   line-height: 60px;
@@ -95,7 +99,14 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  transition: transform 0.2s ease-out;
 }
+
+button:active{
+  transform:scale(0.90);
+}
+
+
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
@@ -334,6 +345,7 @@ footer {
 .checkoutBtn{
     color: var(--secondary-color);
     margin:.5rem;
+<<<<<<< HEAD
 } */
 
 
@@ -595,4 +607,78 @@ label {
 .cart-total {
   font-size: x-large;
   font-weight: bolder;
+=======
+  }
+
+  /* CSS Animations  */
+.animate{
+  animation: scaleAnimation 3s ease;
+  
+}
+
+@keyframes scaleAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  
+  50% {
+    transform: translateY(40rem);
+  }
+
+90%{
+    transform: scale(10);
+  }
+  100% {
+    
+    transform: translateY(0);
+  }
+}
+
+/* search function styles */
+
+/* div.search {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+#search {
+  display: block;
+  margin: 0, auto;
+  float: left;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; 
+  cursor: pointer;
+} 
+*/
+form.search {
+  padding: 5px;
+}
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: hsl(0, 9%, 98%);
+}
+
+form.search button {
+  width: 20%;
+  padding: 10px;
+  background: rgb(50, 48, 48);
+  color: white;
+  font-size: 12px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+>>>>>>> origin
 }
