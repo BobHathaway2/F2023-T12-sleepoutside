@@ -24,9 +24,9 @@ function showSlides(n) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
   if (slides.length > 0) {
-    slides[slideIndex-1].style.display = "block";
+    slides[slideIndex - 1].style.display = "block";
   }
   if (dots.length > 0) {
-    dots[slideIndex-1].className += " active";
+    dots[slideIndex - 1].className += " active";
    }  
 }
