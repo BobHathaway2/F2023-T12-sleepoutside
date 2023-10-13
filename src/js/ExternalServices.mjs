@@ -16,7 +16,7 @@ export default class ExternalServices {
     const spinner = document.getElementById("spinner");
     spinner.removeAttribute('hidden');      
     try {
-      const response = await fetch(baseURL + `products/search/${category}`);
+      const response = await fetch('https://api.aprs.fi/api/get?name=W7SAR-9&what=loc&apikey=153179.FvAi5cUZOCGwg&format=json', {mode:'no-cors'});
       const data = await convertToJson(response);
       spinner.setAttribute('hidden', '');
       return data.Result;
