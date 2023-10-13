@@ -13,7 +13,7 @@ export default class ExternalServices {
 
   async getData(category) {
     try {
-      const response = await fetch(baseURL + `/products/search/${category}`);
+      const response = await fetch(baseURL + `products/search/${category}`);
       const data = await convertToJson(response);
       return data.Result;
     } catch (error) {
@@ -24,7 +24,7 @@ export default class ExternalServices {
   
   async findProductById(id) {
     try {
-        const response = await fetch(baseURL + `/product/${id}`);
+        const response = await fetch(baseURL + `product/${id}`);
         const productData = await convertToJson(response);
         return productData.Result;
     } catch (error) {
