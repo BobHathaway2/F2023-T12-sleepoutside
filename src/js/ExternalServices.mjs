@@ -11,12 +11,17 @@ export default class ExternalServices {
   constructor() {
   }
 
+
   async getData(category) {
+    const spinner = document.getElementById("spinner");
+    spinner.removeAttribute('hidden');      
     try {
       const response = await fetch(baseURL + `products/search/${category}`);
       const data = await convertToJson(response);
+      spinner.setAttribute('hidden', '');
       return data.Result;
     } catch (error) {
+      spinner.setAttribute('hidden', '');
       console.error("Error fetching data:", error);
       throw error;
     }
