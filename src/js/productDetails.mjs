@@ -8,6 +8,7 @@ function productDetailsTemplate(product) {
       src="${product.Images.PrimaryLarge}"
       alt="${product.NameWithoutBrand}"
     />
+    ${showExtraImages(product.Images.ExtraImages)}
     <p class="product-card__list">Original Price: $${product.ListPrice}</p>
     <p class="product-card__discount">Discount: $${(product.Discount ?? 0)}</p>
     <p class="product__color">${product.Colors[0].ColorName}</p>
@@ -17,6 +18,30 @@ function productDetailsTemplate(product) {
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
     </div></section>`;
+}
+
+function showExtraImages(images){
+  let response = "<div class='slideshow-container'>";
+  
+  for (let i = 0; i < images.length; i++) {
+    response += "<div class='mySlides fade'>";
+    response += "<div class='numbertext'>" + (i+1) + " / " + images.length + "</div>";
+    response += "<img src='" + images[i].Src + "' style='width:100%'/>";
+    response += "<div class='text'>" + images[i].Title + "</div>";
+    response += "</div>";
+  }
+
+  response +="<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
+  response += "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
+
+  response +="<div style='text-align:center'>";
+  for (let i = 0; i < images.length; i++) {
+    response +="<span class='dot' onclick='currentSlide(" + (i+1) + ")'></span>";
+  }
+
+  response +="</div>";
+
+  return response;
 }
 
 
@@ -78,6 +103,8 @@ renderProductDetails(selector) {
       "afterBegin",
       productDetailsTemplate(this.product)
     );
+
+    showSlides(1);
   }
 }
 function updateBreadcrumb(category, productName) {
