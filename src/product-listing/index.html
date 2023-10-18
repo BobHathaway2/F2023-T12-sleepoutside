@@ -9,28 +9,26 @@
     <title>Sleep Outside | Cart</title>
 
     <link rel="stylesheet" href="/css/style.css" />
-
-    <script src="../js/cart.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
+    <div id="breadcrumb"></div>
 
     <main class="divider">
-      <section class="products">
-        <h2>My Cart</h2>
-
-        <ul class="product-list"></ul>
-      </section>
-      <div class="cart-footer hide">
-        <span class="cart-total"></span> <br>
-        <a href="/checkout/index.html" class="checkoutBtn">Checkout</a>
+      <div hidden id="spinner"></div> 
+      <span class="categoryName"></span>
+      <div class="sort">
+        <button class="priceSort">$ Lowest to Highest $$$</button>
+        <button class="abcSort">A-Z</button>
       </div>
 
-      
+      <section class="products">
+        <ul id="product-list" class="product-list"></ul>
+      </section>
     </main>
 
     <footer id="main-footer"></footer>
-    <script type="module" src="../js/shoppingcart.mjs"></script>
+    <script type="module" src="../js/product-listing.js"></script>
   </body>
 </html>

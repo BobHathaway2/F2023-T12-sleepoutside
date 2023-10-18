@@ -1,14 +1,12 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter, totalAmount } from "./utils.mjs";
 import ShoppingCart from "./shoppingcart.mjs";
-import totalAmount from "./superScript.mjs";
-
 
 loadHeaderFooter();
 
 
 const cart = new ShoppingCart("so-cart", ".product-list")
 cart.renderCartContents();
-attachRemoveListeners();
+attachEventListeners();
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -54,46 +52,48 @@ renderCartContents();
 //   <p class="cart-card__price">Final: $${item.ListPrice - (item.Discount ?? 0)}</p>
 // </li>`;
 
-//   return newItem;
-// }
-
-// renderCartContents();
-
-// totalAmount()
-
-function removeItemFromCart(productId) {
-  // Fetch from local storage
+function adjustCartItem(productId, change) {
   const cartItems = getLocalStorage("so-cart");
-
-  // Find by product ID
   const itemIndex = cartItems.findIndex(item => item.Id === productId);
-
-  // If the item is found, decrement its quantity
-  if (itemIndex !== -1 && cartItems[itemIndex].quantity > 1) {
-      cartItems[itemIndex].quantity -= 1;
-  } else {
-      // Remove from cart
-      cartItems.splice(itemIndex, 1);
+  if (itemIndex !== -1) {
+      if (change === -1 && cartItems[itemIndex].quantity === 1) {
+          cartItems.splice(itemIndex, 1);
+      } else {
+          cartItems[itemIndex].quantity += change;
+      }
+      localStorage.setItem("so-cart", JSON.stringify(cartItems));
   }
-
-  // Update the cart in local storage with the modified items
-  localStorage.setItem("so-cart", JSON.stringify(cartItems));
-
-  totalAmount()
-
-  // Re-render cart contents
-   cart = new ShoppingCart("so-cart", ".product-list")
+  totalAmount();
+  cart = new ShoppingCart("so-cart", ".product-list");
   cart.renderCartContents();
-  attachRemoveListeners();
 }
 
-// Listener for x to remove item from cart
-function attachRemoveListeners() {
-  const removeButtons = document.querySelectorAll(".remove-item");
-  removeButtons.forEach(button => {
-      button.addEventListener("click", (e) => {
-          const productId = e.target.getAttribute("data-id");
-          removeItemFromCart(productId);
-      });
+function removeProductFromCart(productId) {
+  const cartItems = getLocalStorage("so-cart");
+  const itemIndex = cartItems.findIndex(item => item.Id === productId);
+  if (itemIndex !== -1) {
+      cartItems.splice(itemIndex, 1);
+      localStorage.setItem("so-cart", JSON.stringify(cartItems));
+  }
+  totalAmount();
+  cart = new ShoppingCart("so-cart", ".product-list");
+  cart.renderCartContents();
+}
+window.removeProductFromCart = removeProductFromCart;
+
+function attachEventListeners() {
+  const cartContainer = document.querySelector(".product-list");
+  cartContainer.addEventListener("click", (e) => {
+      const productId = e.target.getAttribute("data-id");
+      if (e.target.classList.contains("remove-item")) {
+          adjustCartItem(productId, -1);
+      } else if (e.target.classList.contains("add-item")) {
+          adjustCartItem(productId, +1);
+      } else if (e.target.classList.contains("remove-all")) {
+        const productIdForRemove = e.target.closest(".cart-card").querySelector(".remove-item").getAttribute("data-id");
+        if (typeof window.removeProductFromCart === "function") {
+            window.removeProductFromCart(productIdForRemove);
+        }
+      }
   });
 }
