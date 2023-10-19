@@ -1,4 +1,4 @@
-import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage, alertMessage } from "./utils.mjs";
 import totalAmount from "./superScript.mjs";
 
 function productDetailsTemplate(product) {
@@ -41,6 +41,7 @@ export default class ProductDetails {
 
   addToCart() {
     this.addProduct(this.product); 
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
   }
 
   addProduct(product) {
